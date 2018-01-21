@@ -13,7 +13,17 @@
 - (WKNavigation *)dk_loadHTMLString:(NSString *)string
 {
     self.scrollView.scrollEnabled = NO;
+    
     return [self loadHTMLString:string baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
+}
+
+- (WKNavigation *)dk_loadURLString:(NSString *)URLString
+{
+    NSURL *url = [NSURL URLWithString:[URLString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    return [self loadRequest:request];
 }
 
 @end

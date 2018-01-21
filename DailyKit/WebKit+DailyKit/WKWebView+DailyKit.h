@@ -12,4 +12,6 @@
 
 - (WKNavigation *)dk_loadHTMLString:(NSString *)string;
 
+- (WKNavigation *)dk_loadURLString:(NSString *)URLString;
+
 @end
