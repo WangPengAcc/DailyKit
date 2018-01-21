@@ -9,6 +9,7 @@
 #import "NSString+DailyKit.h"
 #import <CommonCrypto/CommonDigest.h>
 #import <CoreGraphics/CoreGraphics.h>
+#import "DKMacro.h"
 
 static NSDateFormatter *fmt = nil;
 

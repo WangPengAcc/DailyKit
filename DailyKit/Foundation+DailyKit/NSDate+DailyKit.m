@@ -8,6 +8,7 @@
 
 #import "NSDate+DailyKit.h"
 #import "NSString+DailyKit.h"
+#import "DKMacro.h"
 
 static NSDateFormatter *fmt = nil;
 static NSCalendar *calendar = nil;

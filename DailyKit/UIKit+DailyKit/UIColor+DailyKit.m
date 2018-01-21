@@ -7,6 +7,7 @@
 //
 
 #import "UIColor+DailyKit.h"
+#import "DKMacro.h"
 
 @implementation UIColor (DailyKit)
 

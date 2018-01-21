@@ -32,5 +32,11 @@
 #define DKStatusBarHeight [[UIApplication sharedApplication] statusBarFrame].size.height
 #define DKNavHeight 64
 
+// 时间日期
+#define DKSecondOfDay (24*60*60)
+#define DKDefaultTimeFormat @"HH:mm"
+#define DKDefaultDateFormat @"yyyy-MM-dd"
+#define DKDefaultDateTimeFormat @"yyyy-MM-dd HH:mm"
+
 
 #endif /* DKMacro_h */

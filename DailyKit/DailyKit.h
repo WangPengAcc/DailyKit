@@ -9,17 +9,23 @@
 #ifndef DailyKit_h
 #define DailyKit_h
 
-// Headers
+// Global
 #import "DKMacro.h"
 #import "DKTypedef.h"
+
+// Third
 #import "DKHTTPSessionManager.h"
 #import "DKDBManager.h"
-#import "DKAlert.h"
+#import "SVProgressHUD+DailyKit.h"
+
+// Foundation
 #import "NSDate+DailyKit.h"
 #import "NSNull+DailyKit.h"
 #import "NSObject+DailyKit.h"
 #import "NSString+DailyKit.h"
 #import "NSArray+DailyKit.h"
+
+// UIKit
 #import "UIButton+DailyKit.h"
 #import "UIColor+DailyKit.h"
 #import "UIImage+DailyKit.h"
@@ -27,9 +33,13 @@
 #import "UIView+DailyKit.h"
 #import "UIViewController+DailyKit.h"
 #import "UINavigationController+DailyKit.h"
-#import "WKWebView+DailyKit.h"
-#import "SVProgressHUD+DailyKit.h"
 
+
+// WebKit
+#import "WKWebView+DailyKit.h"
+
+// Custom
+#import "DKAlert.h"
 #import "DKSearchBar.h"
 
 #endif /* DailyKit_h */

@@ -6,11 +6,6 @@
 //  Copyright © 2017年 WANGPENG. All rights reserved.
 //
 
-#define DKSecondOfDay (24*60*60)
-#define DKDefaultTimeFormat @"HH:mm"
-#define DKDefaultDateFormat @"yyyy-MM-dd"
-#define DKDefaultDateTimeFormat @"yyyy-MM-dd HH:mm"
-
 #import <Foundation/Foundation.h>
 
 @interface NSDate (DailyKit)
