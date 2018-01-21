@@ -7,6 +7,7 @@
 //
 
 #import "SVProgressHUD+DailyKit.h"
+#import "UIImage+DailyKit.h"
 
 @implementation SVProgressHUD (DailyKit)
 
