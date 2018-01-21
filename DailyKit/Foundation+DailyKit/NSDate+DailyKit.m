@@ -8,9 +8,6 @@
 
 #import "NSDate+DailyKit.h"
 #import "NSString+DailyKit.h"
-#import "DKMacro.h"
-
-#define DKSecondOfDay (24*60*60)
 
 static NSDateFormatter *fmt = nil;
 static NSCalendar *calendar = nil;
