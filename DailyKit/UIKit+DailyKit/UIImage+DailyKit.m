@@ -7,6 +7,7 @@
 //
 
 #import "UIImage+DailyKit.h"
+#import "DKMacro.h"
 
 @implementation UIImage (DailyKit)
 
