@@ -31,6 +31,8 @@
 #define DKScreenHeight [UIScreen mainScreen].bounds.size.height
 #define DKStatusBarHeight [[UIApplication sharedApplication] statusBarFrame].size.height
 #define DKNavHeight 64
+#define DKImgNewWidth(newHeight, originalWidth, originalHeight) newHeight * originalWidth / originalHeight
+#define DKImgNewHeight(newWidth, originalWidth, originalHeight) newWidth * originalHeight / originalWidth
 
 // 时间日期
 #define DKSecondOfDay (24*60*60)
