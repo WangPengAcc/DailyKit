@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "DailyKit"
-  s.version      = "0.0.37"
+  s.version      = "0.0.38"
   s.summary      = "iOS dev daily kit."
   s.homepage     = "https://github.com/iospp/DailyKit"
   s.license      = { :type => 'MIT', :file => 'LICENSE' }

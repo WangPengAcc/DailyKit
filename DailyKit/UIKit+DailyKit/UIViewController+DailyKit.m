@@ -31,4 +31,11 @@
     }
 }
 
+- (void)dk_presentViewController:(UIViewController *)viewController alpha:(CGFloat)alpha
+{
+    viewController.view.backgroundColor = DKRGBAColor(0, 0, 0, alpha);
+    viewController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    [self presentViewController:viewController animated:NO completion:nil];
+}
+
 @end

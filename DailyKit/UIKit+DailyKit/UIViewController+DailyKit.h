@@ -16,4 +16,7 @@
 
 - (void)dk_removeBackTitle;
 
+// (半)透明模态弹窗
+- (void)dk_presentViewController:(UIViewController *)viewController alpha:(CGFloat)alpha;
+
 @end
