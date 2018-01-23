@@ -90,4 +90,7 @@
 // 判断是否是空字符串
 - (BOOL)dk_isEmpty;
 
+// 当前时间戳字符串
++ (NSString *)dk_currentTimeIntervalString;
+
 @end

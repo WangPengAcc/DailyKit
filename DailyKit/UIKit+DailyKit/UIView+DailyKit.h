@@ -22,4 +22,7 @@ typedef void (^ActionBlock) (void);
 
 - (void)dk_addActionBlock:(ActionBlock)block;
 
+// action like this : - (void)longPressView:(UILongPressGestureRecognizer *)longPressGest
+- (void)dk_longPressWithMinimumPressDuration:(CGFloat)minimumPressDuration allowableMovement:(CGFloat)allowableMovement target:(id)target action:(SEL)action;
+
 @end

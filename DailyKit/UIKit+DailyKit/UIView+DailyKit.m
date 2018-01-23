@@ -73,4 +73,15 @@ static char kActionBlockKey;
 }
 #pragma 添加响应事件end
 
+#pragma  mark - 手势
+// 长按
+- (void)dk_longPressWithMinimumPressDuration:(CGFloat)minimumPressDuration allowableMovement:(CGFloat)allowableMovement target:(id)target action:(SEL)action
+{
+    self.userInteractionEnabled = YES;
+    UILongPressGestureRecognizer *longPressGest = [[UILongPressGestureRecognizer alloc]initWithTarget:target action:action];
+    longPressGest.minimumPressDuration = minimumPressDuration;
+    longPressGest.allowableMovement = allowableMovement;
+    [self addGestureRecognizer:longPressGest];
+}
+
 @end

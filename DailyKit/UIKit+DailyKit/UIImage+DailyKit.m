@@ -8,6 +8,7 @@
 
 #import "UIImage+DailyKit.h"
 #import "DKMacro.h"
+#import <Photos/Photos.h>
 
 @implementation UIImage (DailyKit)
 
@@ -102,6 +103,28 @@
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;
+}
+
++ (UIImage *)dk_imageWithURLString:(NSString *)URLString
+{
+    return [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:URLString]]];
+}
+
+- (void)dk_saveImageToAlbumWithTarget:(id)target action:(SEL)action
+{
+    UIImageWriteToSavedPhotosAlbum(self, target, action, (__bridge void *)target);
+}
+
+- (void)dk_saveImageToAlbum:(void(^)(BOOL success, NSError *error))completionHandler
+{
+    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+        
+        [PHAssetChangeRequest creationRequestForAssetFromImage:self];
+        
+    } completionHandler:^(BOOL success, NSError * _Nullable error) {
+        
+        completionHandler(success, error);
+    }];
 }
 
 @end

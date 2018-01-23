@@ -146,4 +146,9 @@ static NSCalendar *calendar = nil;
     }
 }
 
++ (NSString *)dk_currentTimeIntervalString
+{
+    return [NSString stringWithFormat:@"%0.f", [[NSDate dateWithTimeIntervalSinceNow:0] timeIntervalSince1970]];
+}
+
 @end

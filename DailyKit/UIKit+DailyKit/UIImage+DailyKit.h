@@ -29,4 +29,11 @@
 
 - (UIImage *)dk_setColor:(UIColor *)color;
 
++ (UIImage *)dk_imageWithURLString:(NSString *)URLString;
+
+// action like this : - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+- (void)dk_saveImageToAlbumWithTarget:(id)target action:(SEL)action;
+
+- (void)dk_saveImageToAlbum:(void(^)(BOOL success, NSError *error))completionHandler;
+
 @end

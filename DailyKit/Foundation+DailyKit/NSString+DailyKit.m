@@ -186,4 +186,9 @@ static NSDateFormatter *fmt = nil;
     return (!self || [self isEqualToString:@""] || [self isEqual:[NSNull null]]);
 }
 
++ (NSString *)dk_currentTimeIntervalString
+{
+    return [NSString stringWithFormat:@"%0.f", [[NSDate dateWithTimeIntervalSinceNow:0] timeIntervalSince1970]];
+}
+
 @end

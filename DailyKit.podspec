@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "DailyKit"
-  s.version      = "0.0.36"
+  s.version      = "0.0.37"
   s.summary      = "iOS dev daily kit."
   s.homepage     = "https://github.com/iospp/DailyKit"
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.source_files = 'DailyKit/**/*'
   s.public_header_files = 'DailyKit/**/*.{h}'
   s.ios.deployment_target = '9.0'
-  s.framework  = "Foundation", 'UIKit', 'CoreGraphics', 'CoreFoundation', 'WebKit'
+  s.framework  = "Foundation", 'UIKit', 'CoreGraphics', 'CoreFoundation', 'WebKit', 'Photos'
   s.dependency   "AFNetworking"
   s.dependency   "FMDB"
   s.dependency   "SVProgressHUD"

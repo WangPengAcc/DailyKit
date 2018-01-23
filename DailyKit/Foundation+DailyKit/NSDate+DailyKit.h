@@ -43,4 +43,7 @@
 // 格式化日期
 + (NSString *)dk_formatToString:(NSString *)yyyyMMdd;
 
+// 当前时间戳字符串
++ (NSString *)dk_currentTimeIntervalString;
+
 @end
