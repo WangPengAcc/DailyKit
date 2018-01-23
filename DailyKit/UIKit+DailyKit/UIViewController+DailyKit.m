@@ -7,6 +7,7 @@
 //
 
 #import "UIViewController+DailyKit.h"
+#import "DKMacro.h"
 
 @implementation UIViewController (DailyKit)
 
