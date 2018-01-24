@@ -27,10 +27,15 @@ typedef NS_ENUM(NSInteger, DKRequestMethod) {
  完成回调
 
  @param result 结果集
- @param error 错误对象
+ @param error NSError
  */
 typedef void (^DKCompletion)(id result, NSError * error);
 
+/**
+ 网络错误处理
+
+ @param error NSError
+ */
 typedef void(^DKErrorHandler)(NSError * error);
 
 @interface DKHTTPSessionManager : AFHTTPSessionManager

@@ -181,7 +181,7 @@ static DKHTTPSessionManager *manager = nil;
                                  completion(responseObject, nil);
                              }
                              failure:^(NSURLSessionDataTask *task, NSError *error) {
-                                 completion(nil, error); // 这里依然返回 error，如有特殊需要可进行特殊处理，不建议捕获 error，而是统一在errorHandler里面处理
+                                 completion(nil, error);
                                  if (error && manager.errorHandler) {
                                      manager.errorHandler(error);
                                  }
