@@ -31,6 +31,8 @@ typedef NS_ENUM(NSInteger, DKRequestMethod) {
  */
 typedef void (^DKCompletion)(id result, NSError * error);
 
+typedef void(^DKErrorHandler)(NSError * error);
+
 @interface DKHTTPSessionManager : AFHTTPSessionManager
 
 /**

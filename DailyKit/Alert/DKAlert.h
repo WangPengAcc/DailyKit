@@ -6,7 +6,7 @@
 //  Copyright © 2018年 WANGPENG. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface DKAlert : NSObject
 

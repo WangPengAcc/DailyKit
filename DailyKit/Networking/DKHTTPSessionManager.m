@@ -11,19 +11,34 @@
 
 
 #pragma mark - AFHTTPSessionManager (DailyKit)
+@interface AFHTTPSessionManager (DailyKit)
+
 /**
  给 AFHTTPSessionManager 添加 parameters 属性
  为了在 DKHTTPSessionManager 的 category 中重写 parameters 的 getter 方法时不报警告
  */
-@interface AFHTTPSessionManager (DailyKit)
-
 @property (strong, nonatomic) NSMutableDictionary *parameters;
+
+/**
+ 给 AFHTTPSessionManager 添加 errorHandler 属性
+ 在 DKHTTPSessionManager 的 category 中重写 errorHandler 的 getter 方法以对网络错误统一处理
+ 例如：
+ - (DKErrorHandler)errorHandler
+ {
+    return ^(NSError *error){
+        NSString *msg = [NSString stringWithFormat:@"%@", error.userInfo[@"NSLocalizedDescription"]];
+        [SVProgressHUD dk_onlyText:msg delay:10];
+    };
+ }
+ */
+@property (copy, nonatomic)DKErrorHandler errorHandler;
 
 @end
 
 @implementation AFHTTPSessionManager (DailyKit)
 
 static char parametersKey;
+static char errorHandlerKey;
 
 - (NSMutableDictionary *)parameters
 {
@@ -34,6 +49,17 @@ static char parametersKey;
 {
     objc_setAssociatedObject(self, &parametersKey, parameters, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
+
+- (DKErrorHandler)errorHandler
+{
+    return objc_getAssociatedObject(self, &errorHandlerKey);
+}
+
+- (void)setErrorHandler:(DKErrorHandler)errorHandler
+{
+    objc_setAssociatedObject(self, &errorHandlerKey, errorHandler, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
 @end
 
 
@@ -155,8 +181,10 @@ static DKHTTPSessionManager *manager = nil;
                                  completion(responseObject, nil);
                              }
                              failure:^(NSURLSessionDataTask *task, NSError *error) {
-                                 NSLog(@"%@", error);
-                                 completion(nil, error);
+                                 completion(nil, error); // 这里依然返回 error，如有特殊需要可进行特殊处理，不建议捕获 error，而是统一在errorHandler里面处理
+                                 if (error && manager.errorHandler) {
+                                     manager.errorHandler(error);
+                                 }
                              }] resume];
 }
 
