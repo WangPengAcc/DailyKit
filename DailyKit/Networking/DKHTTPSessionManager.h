@@ -13,6 +13,7 @@
  optional:
  重写 baseURL 的 getter 方法可以设置 baseURL
  重写 parameters 的 getter 方法可以封装公共网络参数
+ 重写 errorHandler 的 getter 方法可以统一处理网络错误
  */
 
 #import <AFNetworking/AFNetworking.h>
