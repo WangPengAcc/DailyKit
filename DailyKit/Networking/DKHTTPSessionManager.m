@@ -8,6 +8,7 @@
 
 #import "DKHTTPSessionManager.h"
 #import <objc/runtime.h>
+#import <AFNetworking/AFNetworkActivityIndicatorManager.h>
 
 
 #pragma mark - AFHTTPSessionManager (DailyKit)
@@ -18,6 +19,38 @@
  为了在 DKHTTPSessionManager 的 category 中重写 parameters 的 getter 方法时不报警告
  */
 @property (strong, nonatomic) NSMutableDictionary *parameters;
+
+
+
+/**
+ 给 AFHTTPSessionManager 添加 activityIndicatorViewSetter 属性
+ 在 DKHTTPSessionManager 的 category 中重写 activityIndicatorViewSetter 的 getter 方法设置菊花
+ 例如：
+ - (DKActivityIndicatorViewSetter)activityIndicatorViewSetter
+ {
+    return ^{
+        [SVProgressHUD show];
+    };
+ }
+ */
+@property (copy, nonatomic)DKActivityIndicatorViewSetter activityIndicatorViewSetter;
+
+
+
+/**
+ 给 AFHTTPSessionManager 添加 activityIndicatorViewCleaner 属性
+ 在 DKHTTPSessionManager 的 category 中重写 activityIndicatorViewCleaner 的 getter 方法移除菊花
+ 例如：
+ - (DKActivityIndicatorViewCleaner)activityIndicatorViewCleaner
+ {
+    return ^{
+        [SVProgressHUD dismiss];
+    };
+ }
+ */
+@property (copy, nonatomic)DKActivityIndicatorViewCleaner activityIndicatorViewCleaner;
+
+
 
 /**
  给 AFHTTPSessionManager 添加 errorHandler 属性
@@ -38,7 +71,6 @@
 @implementation AFHTTPSessionManager (DailyKit)
 
 static char parametersKey;
-static char errorHandlerKey;
 
 - (NSMutableDictionary *)parameters
 {
@@ -49,6 +81,38 @@ static char errorHandlerKey;
 {
     objc_setAssociatedObject(self, &parametersKey, parameters, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
+
+
+
+static char activityIndicatorViewSetterKey;
+
+- (DKActivityIndicatorViewSetter)activityIndicatorViewSetter
+{
+    return objc_getAssociatedObject(self, &activityIndicatorViewSetterKey);
+}
+
+- (void)setActivityIndicatorViewSetter:(DKActivityIndicatorViewSetter)activityIndicatorViewSetter
+{
+    objc_setAssociatedObject(self, &activityIndicatorViewSetterKey, activityIndicatorViewSetter, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+
+
+static char activityIndicatorViewCleanerKey;
+
+- (DKActivityIndicatorViewCleaner)activityIndicatorViewCleaner
+{
+    return objc_getAssociatedObject(self, &activityIndicatorViewCleanerKey);
+}
+
+- (void)setActivityIndicatorViewCleaner:(DKActivityIndicatorViewCleaner)activityIndicatorViewCleaner
+{
+    objc_setAssociatedObject(self, &activityIndicatorViewCleanerKey, activityIndicatorViewCleaner, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+
+
+static char errorHandlerKey;
 
 - (DKErrorHandler)errorHandler
 {
@@ -115,6 +179,9 @@ static DKHTTPSessionManager *manager = nil;
                                                              @"image/jpeg",
                                                              @"image/png",
                                                              nil];
+        
+        [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+        
     });
     
     return manager;
@@ -171,21 +238,40 @@ static DKHTTPSessionManager *manager = nil;
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:manager.parameters];
     [dict addEntriesFromDictionary:parameters];
-        
+    
+    if (manager.activityIndicatorViewSetter) {
+        manager.activityIndicatorViewSetter();
+    }
+    
     [[manager dataTaskWithHTTPMethod:methodName
                            URLString:URLString
                           parameters:dict
                       uploadProgress:nil
                     downloadProgress:nil
                              success:^(NSURLSessionDataTask *task, id responseObject) {
+                                 
                                  completion(responseObject, nil);
+                                 
+                                 if (manager.activityIndicatorViewCleaner) {
+                                     manager.activityIndicatorViewCleaner();
+                                 }
+                                 
                              }
+      
                              failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                 
                                  completion(nil, error);
+                                 
+                                 if (manager.activityIndicatorViewCleaner) {
+                                     manager.activityIndicatorViewCleaner();
+                                 }
+                                 
                                  if (error && manager.errorHandler) {
                                      manager.errorHandler(error);
                                  }
+                                 
                              }] resume];
+    
 }
 
 @end

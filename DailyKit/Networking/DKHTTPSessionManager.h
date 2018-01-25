@@ -13,6 +13,8 @@
  optional:
  重写 baseURL 的 getter 方法可以设置 baseURL
  重写 parameters 的 getter 方法可以封装公共网络参数
+ 重写 activityIndicatorViewSetter 的 getter 方法设置菊花
+ 重写 activityIndicatorViewCleaner 的 getter 方法移除菊花
  重写 errorHandler 的 getter 方法可以统一处理网络错误
  */
 
@@ -31,6 +33,16 @@ typedef NS_ENUM(NSInteger, DKRequestMethod) {
  @param error NSError
  */
 typedef void (^DKCompletion)(id result, NSError * error);
+
+/**
+ 设置菊花的block
+ */
+typedef void(^DKActivityIndicatorViewSetter)(void);
+
+/**
+ 移除菊花的block
+ */
+typedef void(^DKActivityIndicatorViewCleaner)(void);
 
 /**
  网络错误处理
