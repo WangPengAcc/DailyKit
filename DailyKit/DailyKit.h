@@ -29,6 +29,7 @@
 #import "UIButton+DailyKit.h"
 #import "UIColor+DailyKit.h"
 #import "UIImage+DailyKit.h"
+#import "UIImageView+DailyKit.h"
 #import "UILabel+DailyKit.h"
 #import "UIView+DailyKit.h"
 #import "UITableView+DailyKit.h"
