@@ -31,6 +31,7 @@
 #import "UIImage+DailyKit.h"
 #import "UILabel+DailyKit.h"
 #import "UIView+DailyKit.h"
+#import "UITableView+DailyKit.h"
 #import "UIViewController+DailyKit.h"
 #import "UINavigationController+DailyKit.h"
 
