@@ -21,6 +21,10 @@
     if (self.navigationController) {
         
         [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+        
+        [self.navigationController.navigationBar setShadowImage:nil];
+        
+        [self.navigationController.navigationBar setClipsToBounds:YES];
     }
 }
 
