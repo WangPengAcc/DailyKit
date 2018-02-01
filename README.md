@@ -1,2 +1,2 @@
-pod 'DailyKit', '~> 0.0.48'
+pod 'DailyKit', '~> 0.0.49'
 
