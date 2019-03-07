@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
   s.name         = "DailyKit"
-  s.version      = "0.0.49"
+  s.version      = "0.0.50"
   s.summary      = "iOS dev daily kit."
-  s.homepage     = "https://github.com/iospp/DailyKit"
+  s.homepage     = "https://github.com/grasource-wangpeng/DailyKit"
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
-  s.author       = { "pp" => "iospp@foxmail.com" }
-  s.source       = { :git => "https://github.com/iospp/DailyKit.git", :tag => s.version }
+  s.author       = { "grasource-wangpeng" => "wangpeng_acc@163.com" }
+  s.source       = { :git => "https://github.com/grasource-wangpeng/DailyKit.git", :tag => s.version }
   s.requires_arc = true
   s.source_files = 'DailyKit/**/*'
   s.public_header_files = 'DailyKit/**/*.{h}'
